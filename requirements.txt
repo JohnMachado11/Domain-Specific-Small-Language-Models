@@ -1,0 +1,34 @@
+torch
+transformers>=4.45,<5
+datasets
+accelerate
+evaluate
+numpy
+matplotlib
+sentence-transformers
+faiss-cpu
+ipykernel
+ipywidgets
+peft
+optimum
+onnx
+onnxruntime
+PyMuPDF
+pypdf
+PyPDF2
+langchain
+langchain-community
+langchain-huggingface
+lancedb
+rank_bm25
+smolagents
+ddgs
+omegaconf
+pymatgen
+
+# Keep the HF ecosystem compatible across this notebook set.
+huggingface-hub>=0.33.4,<1.0.0
+
+bitsandbytes; platform_system == "Linux"
+auto-gptq; platform_system == "Linux"
+vllm; platform_system == "Linux"
