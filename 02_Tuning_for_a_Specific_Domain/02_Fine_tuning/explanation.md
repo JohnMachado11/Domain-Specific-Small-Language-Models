@@ -208,6 +208,18 @@ predict_answer_tokens = inputs.input_ids[0, answer_start_index : answer_end_inde
 tokenizer.decode(predict_answer_tokens)
 ```
 
+## Step 5: Upload to Hugging Face
+
+The fine-tuned model was uploaded to Hugging Face for reuse without retraining:
+
+```python
+# Load the model from Hugging Face (no local checkpoint needed)
+tokenizer = AutoTokenizer.from_pretrained("John-Machado/distilbert-squad-qa")
+model = AutoModelForQuestionAnswering.from_pretrained("John-Machado/distilbert-squad-qa")
+```
+
+The model is publicly available at [`John-Machado/distilbert-squad-qa`](https://huggingface.co/John-Machado/distilbert-squad-qa). Only the final checkpoint (step 750, end of epoch 3) was uploaded — intermediate checkpoints were discarded.
+
 ## Results
 
 The model correctly extracts `"36"` from the context paragraph. This is a direct substring — the model pointed to the token(s) for "36" in the input and sliced them out. No text was generated.
