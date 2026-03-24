@@ -29,6 +29,6 @@ pymatgen
 # Keep the HF ecosystem compatible across this notebook set.
 huggingface-hub>=0.33.4,<1.0.0
 
-bitsandbytes; platform_system == "Linux"
+bitsandbytes
 auto-gptq; platform_system == "Linux"
 vllm; platform_system == "Linux"
