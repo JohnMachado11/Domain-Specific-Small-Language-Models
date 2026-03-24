@@ -94,19 +94,25 @@ The update is their product **BA**, which has rank at most *r*. Since *r* is muc
 flowchart LR
     subgraph Frozen["Pretrained Weight W<br>(frozen, not updated)"]
         direction TB
+        F_pad[ ]:::hidden
         W["W<br>d x d"]
+        F_pad --> W
     end
     subgraph LoRA["LoRA Adapter<br>(trainable)"]
         direction TB
+        L_pad[ ]:::hidden
         A["A<br>r x d<br>init: normal dist"]
         B["B<br>d x r<br>init: zeros"]
-        A --> B
+        L_pad --> A --> B
     end
     X["Input x"] --> Frozen
     X --> LoRA
     Frozen --> PLUS["+"]
     LoRA --> PLUS
     PLUS --> H["Output h =<br>Wx + BAx"]
+    classDef hidden display:none;
+    linkStyle 0 display:none
+    linkStyle 1 display:none
 ```
 
 Because **B** starts at zero, the LoRA adapter initially has no effect — the model behaves exactly like the pretrained version at the start of training. As training progresses, **A** and **B** learn the task-specific adjustments.
